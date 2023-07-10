@@ -166,7 +166,6 @@ class fsController {
                             users[i].lastName = lastName;
                         if (dob)
                             users[i].dob = dob;
-                        console.log(users[i]);
                         fs_1.default.writeFile("src/public/uploads/json/users.json", JSON.stringify(users), (err) => {
                             if (err) {
                                 res.status(500).json({ error: "Internal server error!" });
@@ -200,6 +199,7 @@ class fsController {
     async dropUser(req, res) {
         try {
             const id = req.params.id;
+            let deleteFlag = false;
             fs_1.default.readFile("src/public/uploads/json/users.json", "utf8", (err, data) => {
                 if (err) {
                     console.error("Error :", err);
@@ -207,15 +207,23 @@ class fsController {
                 const users = JSON.parse(data);
                 for (let i = 0; i < users.length; i++) {
                     if (users[i]?.id === id) {
+                        deleteFlag = true;
                         users.splice(i, 1);
-                        return res.status(200).json({
-                            message: "Removed User Successfully!",
-                            data: [],
+                        fs_1.default.writeFile("src/public/uploads/json/users.json", JSON.stringify(users), (err) => {
+                            if (err) {
+                                res.status(500).json({ error: "Internal server error!" });
+                            }
+                            else {
+                                return res.status(200).json({
+                                    message: "Removed User Successfully!",
+                                    data: [],
+                                });
+                            }
                         });
                     }
-                    else {
-                        return res.status(401).json({ message: "User doesn't exist!" });
-                    }
+                }
+                if (!deleteFlag) {
+                    return res.status(401).json({ message: "User doesn't exist!" });
                 }
             });
         }
