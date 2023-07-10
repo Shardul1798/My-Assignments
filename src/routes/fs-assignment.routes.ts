@@ -1,6 +1,7 @@
 import multer from "multer";
 import express from "express";
 import { fscontroller } from "../controllers/fs.controller";
+import { validateUser } from "../middleware/fsuser.auth";
 
 const fs = require("fs");
 
@@ -18,3 +19,10 @@ export const fsRouter = express.Router();
 
 fsRouter.post("/upload", upload.single("file"), fscontroller.uploadFile);
 fsRouter.post("/merge-files", fscontroller.mergeAndCreateFile);
+
+//NEW ASSIGNMENT 10.07.23
+fsRouter.post("/register",validateUser ,fscontroller.registerUser);
+fsRouter.post("/login", fscontroller.loginUser);
+fsRouter.get("/getuser/:id", fscontroller.getUserDetails);
+fsRouter.get("/update/:id", fscontroller.updateUserDetailsById);
+fsRouter.delete("/delete/:id", fscontroller.dropUser);
