@@ -1,6 +1,7 @@
 import multer from "multer";
 import express from "express";
 import { fscontroller } from "../controllers/fs.controller";
+import { validateUser } from "../middleware/fsuser.auth";
 
 
 //This is the multer configuration to upload a file
@@ -21,3 +22,10 @@ fsRouter.post("/upload", upload.single("file"), fscontroller.uploadFile);
 
 //Endpoint to create a new file
 fsRouter.post("/merge-files", fscontroller.mergeAndCreateFile);
+
+//NEW ASSIGNMENT 10.07.23
+fsRouter.post("/register",validateUser ,fscontroller.registerUser);
+fsRouter.post("/login", fscontroller.loginUser);
+fsRouter.get("/getuser/:id", fscontroller.getUserDetails);
+fsRouter.get("/update/:id", fscontroller.updateUserDetailsById);
+fsRouter.delete("/delete/:id", fscontroller.dropUser);
