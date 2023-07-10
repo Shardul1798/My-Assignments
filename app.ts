@@ -41,6 +41,8 @@ app.get("/", (req, res) => {
 
 app.use("/admin", adminRouter);
 app.use("/student", studentRouter);
+
+//This is the base route for file system assignment (dated - 07-07-2023)
 app.use("/fs", fsRouter);
 
 app.listen(port, hostname, () => {

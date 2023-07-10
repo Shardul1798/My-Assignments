@@ -1,6 +1,8 @@
 import fs from "fs";
 
 class fsController {
+
+  //Method to upload file using post
   uploadFile(req, res) {
     try {
       return res.status(200).json({ message: "Successfully Updated;" });
@@ -9,6 +11,7 @@ class fsController {
     }
   }
 
+  //Method to create a new file with old file contents
   async mergeAndCreateFile(req, res) {
     try {
       const { filePathOne, filePathTwo } = req.body;
