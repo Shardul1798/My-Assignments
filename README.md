@@ -1,6 +1,7 @@
 Notes for 10.07.2023
 
 Topic - Database (RDBMS -Postgres)
+
 1. What is a database.
 2. Types of Database.
 3. Relational Databases.
@@ -13,7 +14,8 @@ Topic - Database (RDBMS -Postgres)
 10. ORDER BY
 11. UML
 
-EXAMPLES - 
+EXAMPLES -
+
 1. Design of a Database Schema for Instagram
 
 Note - Use UPPER CASE letters for writing Query keywords as it will provide more readability for writing huge queries.
@@ -23,17 +25,18 @@ A.) What is Database?
 Databases provides a structured and organized way to store data, making it easier to access, query, and update.
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-B.) Types of Database - 
+B.) Types of Database -
+
 1. Relational Example - SQL
 2. Non-Relational - MongoDB
 3. Key Value - MongoDB
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-C.) Relational Database (SQL - Structured Query Langugage) - 
+C.) Relational Database (SQL - Structured Query Langugage) -
 
 In Relational Database, Data is stored in a table (also called as relation) having rows & columns.
 
-SQL (Structured Query Language) is a programming language used to manage and manipulate relational databases. It provides a standardized set of commands and syntax for interacting with databases. 
+SQL (Structured Query Language) is a programming language used to manage and manipulate relational databases. It provides a standardized set of commands and syntax for interacting with databases.
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 D.) Tables (Rows & Columns)
@@ -43,17 +46,16 @@ Each column represents a specific type of data, while each row represents an ind
 Columns define the attributes or properties of the data, and rows contain the actual values or data instances.
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-E.) Queries - 
+E.) Queries -
 
 CREATE - Used to create table
 
 Example - CREATE TABLE employees (
-  id INT PRIMARY KEY,
-  name VARCHAR(50),
-  age INT,
-  salary DECIMAL(10,2)
+id INT PRIMARY KEY,
+name VARCHAR(50),
+age INT,
+salary DECIMAL(10,2)
 );
-
 
 Here, CREATE TABLE are the keywords. employess will be the table name. id, name, age, and salary will be the columns of the "empoyees" table. INT PRIMARY KEY, VARCHAR(50), INT, DECIMAL(10,2) specify the data types of the columns respectively.
 
@@ -71,9 +73,9 @@ Here, UPDATE SET and WHERE are the keywords. "employees" is the tablename. "id" 
 
 SELECT - Used to fetch records from the table.
 
-Example - SELECT * FROM cities;
+Example - SELECT \* FROM cities;
 
-Here, SELECT and FROM are the Query keywords. * returns the complete table. "cities" is the name of the table.
+Here, SELECT and FROM are the Query keywords. \* returns the complete table. "cities" is the name of the table.
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 F.) Alias (AS)
@@ -91,7 +93,7 @@ Note - Using Aggregations will help in reducing more queries
 
 COUNT() - Returns the number of rows that match a specific condition or the total number of rows in a table.
 
-Example - SELECT COUNT(*) FROM cities;
+Example - SELECT COUNT(\*) FROM cities;
 
 SUM() - Calculates the sum of values in a column.
 
@@ -124,19 +126,19 @@ The NOT operator displays a record if the condition(s) is NOT TRUE.
 
 Example - (AND)
 
-SELECT * FROM cities WHERE Country='Germany' AND City='India';
+SELECT \* FROM cities WHERE Country='Germany' AND City='India';
 
 Example - (OR)
-SELECT * FROM cities WHERE Country='Germany' OR City='India';
+SELECT \* FROM cities WHERE Country='Germany' OR City='India';
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-I.) WHERE Clause 
+I.) WHERE Clause
 
 The WHERE clause is used to filter records.
 
 It is used to extract only those records that fulfill a specified condition.
 
-Example - SELECT * FROM cities WHERE country='INDIA';
+Example - SELECT \* FROM cities WHERE country='INDIA';
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 J.) ORDER BY
@@ -147,27 +149,25 @@ It is commonly used for sorting.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 K.) UML - Unified Modeling Language
 
-
-
 Assignment (10.07.2023)
 
-1. User should be able to follow other user. 
+1. User should be able to follow other user.
 
 QUERY - INSERT INTO followers (id, userId, following) VALUES (uuid_generate_v4(), <userId> , true);
 
 2. User should be able to unfollow other user.
 
 QUERY - UPDATE followers SET following = false WHERE followerId = <userId>; //To Unfollow
- //followingId will be the User Id of following person
+//followingId will be the User Id of following person
 
 3. User should be able to see total followers and following count.
 
-QUERY for count of following - SELECT COUNT(*) AS following FROM followers WHERE following = true AND userId = <userId>;
-QUERY for count of followers - SELECT COUNT(*) AS followers FROM followers WHERE followers = true AND userId = <userId>;
+QUERY for count of following - SELECT COUNT(_) AS following FROM followers WHERE following = true AND userId = <userId>;
+QUERY for count of followers - SELECT COUNT(_) AS followers FROM followers WHERE followers = true AND userId = <userId>;
 
 4. User should be able to see followers list.
 
-QUERY - SELECT * FROM followers JOIN users ON followers.followerId = users.userId AND followers = true;
+QUERY - SELECT \* FROM followers JOIN users ON followers.followerId = users.userId AND followers = true;
 
 5. User should be able to see following list.
 
@@ -178,17 +178,16 @@ QUERY - SELECT name FROM users JOIN users ON followers.followingId = users.userI
 QUERY - DELETE FROM followers WHERE followingId = <userId>;
 
 7. User should be able to see profile of another user..
-Query - SELECT name,image,age,username,emailId FROM users WHERE userid = <userId>; 
-//<userId> is the Id of another userId
+   Query - SELECT name,image,age,username,emailId FROM users WHERE userid = <userId>;
+   //<userId> is the Id of another userId
 
-8. User profile should consist basic details 
-    a. name
-    b. image
-    c. age
-    d. username
-    e. emailId"
+8. User profile should consist basic details
+   a. name
+   b. image
+   c. age
+   d. username
+   e. emailId"
 
-
-To have a look on UML of both tables - 
+To have a look on UML of both tables -
 
 click on - https://drive.google.com/file/d/1VwZFPc6gNk5ddMDLV-fcAHj5uX-9Zd9u/view?ts=64ac4ca9
