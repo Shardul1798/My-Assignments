@@ -13,6 +13,8 @@ Topic - Database (RDBMS -Postgres)
 9. WHERE Clause
 10. ORDER BY
 11. UML
+12. DELETE
+
 
 EXAMPLES -
 
